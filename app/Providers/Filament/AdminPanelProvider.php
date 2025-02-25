@@ -53,6 +53,33 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->plugins([
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
+                    ->gridColumns([
+                        'default' => 1,
+                        'sm' => 2,
+                    ])
+                    ->sectionColumnSpan(1)
+                    ->checkboxListColumns([
+                        'default' => 1,
+                        'sm' => 2,
+                    ])
+                    ->resourceCheckboxListColumns([
+                        'default' => 1,
+                        'sm' => 2,
+                    ]),
+                    \Awcodes\Curator\CuratorPlugin::make()
+                    ->label('Media')
+                    ->pluralLabel('Medias')
+                    ->navigationIcon('heroicon-o-photo')
+                    // ->navigationGroup('Content')
+                    // ->navigationSort(3)
+                    // ->navigationCountBadge()
+                    // ->registerNavigation(false)
+                    ->defaultListView('grid')
+                    // ->resource(\App\Filament\Resources\MediaResource::class)
+            ])
+            ->viteTheme('resources/css/filament/app/theme.css');
     }
 }
