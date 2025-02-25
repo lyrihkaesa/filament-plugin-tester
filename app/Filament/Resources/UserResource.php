@@ -23,7 +23,8 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                \Awcodes\Curator\Components\Forms\CuratorPicker::make('other'),
+                \Awcodes\Curator\Components\Forms\CuratorPicker::make('other')
+                ->multiple(),
             ]);
     }
 
