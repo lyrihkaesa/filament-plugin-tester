@@ -13,6 +13,11 @@ class MediaPolicy
         return true;
     }
 
+    public function view(User $user): bool
+    {
+        return true;
+    }
+
     public function create(User $user): bool
     {
         return true;
@@ -20,16 +25,21 @@ class MediaPolicy
 
     public function update(User $user, Media $media): bool
     {
-        return true;
+        return $user->id === $media->user_id;
     }
 
     public function delete(User $user, Media $media): bool
     {
-        return true;
+        return $user->id === $media->user_id;
     }
 
     public function deleteAny(User $user): bool
     {
-        return true;
+        return false;
+    }
+
+    public function download(User $user): bool
+    {
+        return false;
     }
 }

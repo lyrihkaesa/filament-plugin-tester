@@ -24,6 +24,13 @@ php artisan key:generate
 php artisan migrate --seed
 ```
 
-- `/admin/login`
+Url: `http://filament-plugin-tester.test//admin/login`
+Url: `http://localhost:8000//admin/login`
+
+- User 01: Kaesa Lyrih
+  - Email: admin@gmail.com
+  - Password: password
+
+- User 02: Kaesa Lyrih v2
   - Email: admin@gmail.com
   - Password: password

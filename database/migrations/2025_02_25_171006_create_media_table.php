@@ -27,6 +27,9 @@ return new class extends Migration
             $table->text('caption')->nullable();
             $table->text('exif')->nullable();
             $table->longText('curations')->nullable();
+
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
