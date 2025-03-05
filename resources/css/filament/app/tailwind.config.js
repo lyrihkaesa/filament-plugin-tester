@@ -8,6 +8,7 @@ export default {
         "./resources/views/filament/**/*.blade.php",
         "./vendor/filament/**/*.blade.php",
         "./vendor/awcodes/filament-curator/resources/**/*.blade.php",
+        './vendor/awcodes/mason/resources/**/*.blade.php',
     ],
     theme: {
         extend: {
