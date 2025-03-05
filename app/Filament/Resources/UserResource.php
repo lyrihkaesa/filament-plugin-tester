@@ -23,8 +23,11 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                \Awcodes\Curator\Components\Forms\CuratorPicker::make('other')
-                ->multiple(),
+                Forms\Components\FileUpload::make('avatar'),
+                Forms\Components\TextInput::make('name'),
+                Forms\Components\TextInput::make('email'),
+                Forms\Components\TextInput::make('password')
+                    ->password(),
             ]);
     }
 
@@ -32,7 +35,13 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\ImageColumn::make('avatar'),
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('email')
+                ->badge()
+                ->copyable()
+                ->copyMessage('Email address copied')
+                ->copyMessageDuration(1500),
             ])
             ->filters([
                 //
