@@ -6,7 +6,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/medias/factory', function (){
+// Route::get('/blog', \App\Livewire\Post\Index::class)->name('posts.index');
+Route::get('/blog', function () {
+    return 'ini index post';
+})->name('posts.index');
+Route::get('/blog/{slug}', \App\Livewire\Post\Show::class)->name('posts.show');
+
+Route::get('/medias/factory', function () {
     $media2 = \Awcodes\Curator\Models\Media::factory()->create()->fresh();
 
     $media = \Awcodes\Curator\Models\Media::factory()->create([
@@ -40,4 +46,3 @@ Route::get('/medias/{media}', function (App\Models\Media $media) {
         'media.check' => basename($media->fullPath) === $media->path,
     ]);
 })->name('media.show');
-

@@ -45,4 +45,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        if ($this->profile_picture_1x1 === null) {
+            return asset('images/thumbnails/images-dark-500x500.jpg');
+        }
+
+        /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+        $disk = \Illuminate\Support\Facades\Storage::disk(config('filament.default_filesystem_disk'));
+        return $disk->url($this->profile_picture_1x1);
+    }
 }

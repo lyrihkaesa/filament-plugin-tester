@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
-use App\Models\Post;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Post;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\PostResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PostResource\RelationManagers;
 
 class PostResource extends Resource
 {
@@ -23,26 +24,45 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('author_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('editor_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('visibility')
-                    ->required()
-                    ->maxLength(255)
-                    ->default('public'),
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\Section::make()
+                    ->columns(2)
+                    ->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->label(__('Title'))
+                            ->required()
+                            ->live(onBlur: true)
+                            ->minLength(1)
+                            ->maxLength(255)
+                            ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
+                                if ($operation === 'edit') {
+                                    return;
+                                }
+
+                                $set('slug', str()->slug($state));
+                            }),
+                        Forms\Components\TextInput::make('slug')
+                            ->label(__('Slug'))
+                            ->minLength(1)
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true)
+                            ->required(),
+                        Forms\Components\Select::make('author_id')
+                            ->label('Author')
+                            ->relationship('author', 'name')
+                            ->required()
+                            ->default(auth('')->user()->id),
+                        Forms\Components\Select::make('editor_id')
+                            ->label('Editor')
+                            ->relationship('editor', 'name')
+                            ->required()
+                            ->default(auth('')->user()->id),
+                        Forms\Components\DateTimePicker::make('published_at'),
+                        Forms\Components\FileUpload::make('thumbnail'),
+                    ]),
+                \Awcodes\Mason\Mason::make('content')
+                    ->bricks(\App\Mason\BrickCollection::make())
+                    // ->extraAttributes(['x-load-js' => "[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('preline-script'))]"])
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('content'),
-                Forms\Components\DateTimePicker::make('published_at'),
-                Forms\Components\TextInput::make('thumbnail')
-                    ->maxLength(255),
             ]);
     }
 
