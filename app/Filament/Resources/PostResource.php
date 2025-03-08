@@ -60,6 +60,8 @@ class PostResource extends Resource
                             ->default(auth('')->user()->id),
                         Forms\Components\DateTimePicker::make('published_at'),
                         Forms\Components\FileUpload::make('thumbnail'),
+                        Forms\Components\TextArea::make('description')
+                            ->columnSpan(2),
                     ]),
                 \Awcodes\Mason\Mason::make('content')
                     ->bricks(\App\Mason\BrickCollection::make())

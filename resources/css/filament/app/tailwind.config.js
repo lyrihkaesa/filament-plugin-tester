@@ -10,6 +10,8 @@ export default {
         "./vendor/awcodes/filament-curator/resources/**/*.blade.php",
         "./vendor/awcodes/mason/resources/**/*.blade.php",
         "./resources/views/mason/**/*.blade.php",
+        "./resources/views/components/**/*.blade.php",
+        "./resources/views/livewire/**/*.blade.php",
     ],
     theme: {
         extend: {

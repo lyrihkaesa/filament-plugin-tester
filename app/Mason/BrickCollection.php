@@ -9,6 +9,7 @@ class BrickCollection
         return [
             Section::make(),
             Carausel::make(),
+            RandomPost::make(),
         ];
     }
 }
