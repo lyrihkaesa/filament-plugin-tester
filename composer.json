@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "awcodes/filament-curator": "^3.7",
+        "awcodes/filament-curator": "3.x-dev",
         "awcodes/mason": "^0.1.0",
         "bezhansalleh/filament-shield": "^3.3",
         "filament/filament": "^3.3",
@@ -82,6 +82,15 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../laravel/filament-curator",
+            "options": {
+                "symlink": true
+            }
+        }
+    ]
 }

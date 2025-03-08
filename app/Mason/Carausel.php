@@ -15,7 +15,7 @@ class Carausel
             ->modalHeading('Carausel Settings')
             ->icon('heroicon-o-cube-transparent')
             ->slideOver()
-            ->fillForm(fn (array $arguments): array => [
+            ->fillForm(fn(array $arguments): array => [
                 //
             ])
             ->form([

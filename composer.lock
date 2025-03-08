@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2133735784748a08eb50f5796b0eb73",
+    "content-hash": "f9462b996ab0c732851298db9a731eff",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -74,17 +74,11 @@
         },
         {
             "name": "awcodes/filament-curator",
-            "version": "v3.7.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/awcodes/filament-curator.git",
-                "reference": "4546968a429afb051a1b0b3ff5f9f0a0857f5b00"
-            },
+            "version": "3.x-dev",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/awcodes/filament-curator/zipball/4546968a429afb051a1b0b3ff5f9f0a0857f5b00",
-                "reference": "4546968a429afb051a1b0b3ff5f9f0a0857f5b00",
-                "shasum": ""
+                "type": "path",
+                "url": "../../laravel/filament-curator",
+                "reference": "d29277d999e9c7a69546070e6d5ada0495531ed1"
             },
             "require": {
                 "intervention/image": "^2.7.2",
@@ -122,7 +116,14 @@
                     "Awcodes\\Curator\\Tests\\Database\\Factories\\": "tests/database/factories"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "pint": [
+                    "vendor/bin/pint"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -141,17 +142,10 @@
                 "filament",
                 "laravel"
             ],
-            "support": {
-                "issues": "https://github.com/awcodes/filament-curator/issues",
-                "source": "https://github.com/awcodes/filament-curator/tree/v3.7.2"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/awcodes",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-03-01T17:18:56+00:00"
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "awcodes/mason",
@@ -11112,7 +11106,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,

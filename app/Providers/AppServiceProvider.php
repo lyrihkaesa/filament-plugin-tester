@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(\Awcodes\Curator\Models\Media::class, \App\Policies\MediaPolicy::class);
 
         FilamentAsset::register([
-            Js::make('preline-script', __DIR__ . '/../../node_modules/preline/dist/preline.js'),
+            Js::make('preline-script', __DIR__ . '/../../node_modules/preline/dist/preline.js')->loadedOnRequest(),
         ]);
     }
 }

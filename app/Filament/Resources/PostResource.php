@@ -25,6 +25,8 @@ class PostResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make()
+                    ->collapsed()
+                    ->collapsible()
                     ->columns(2)
                     ->schema([
                         Forms\Components\TextInput::make('title')
@@ -61,7 +63,9 @@ class PostResource extends Resource
                     ]),
                 \Awcodes\Mason\Mason::make('content')
                     ->bricks(\App\Mason\BrickCollection::make())
-                    // ->extraAttributes(['x-load-js' => "[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('preline-script'))]"])
+                    ->extraAttributes([
+                        'x-load-js' => "['" . \Filament\Support\Facades\FilamentAsset::getScriptSrc('preline-script') . "']",
+                    ])
                     ->columnSpanFull(),
             ]);
     }

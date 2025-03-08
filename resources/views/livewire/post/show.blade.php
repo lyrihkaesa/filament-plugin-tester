@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="space-y-5 px-4 pt-6 sm:px-6 lg:space-y-8 lg:px-8">
+                    <div class="px-4 pt-6 sm:px-6 lg:px-8">
                         {!! mason($this->post->content, \App\Mason\BrickCollection::make())->toHtml() !!}
                         {{-- <div class="grid gap-y-5 lg:flex lg:items-center lg:justify-between lg:gap-y-0">
                             <!-- Badges/Tags -->
